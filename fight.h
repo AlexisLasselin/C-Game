@@ -60,9 +60,9 @@ void fight(struct enemy *enemy) {
             case 2:
                 defend(&player, enemy);
                 break;
-            case 3:
-                printf("You ran away!\n");
-                break;
+            // case 3:
+            //     printf("You ran away!\n");
+            //     break;
             default:
                 printf("Invalid choice. Try again.\n");
                 fight(enemy);
