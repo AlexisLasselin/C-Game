@@ -8,6 +8,9 @@
 #define COLS 30
 #define ROWS 10
 
+#define EMPTY 0
+#define PLAYER 2
+
 void clearScreen(void) {
     #ifdef _WIN32
         system("cls");
@@ -22,16 +25,36 @@ void clearScreen(void) {
 // Each integer represents a different element in the maze.
 
 // Map design
-// 0  = Path; 1 = horizontal wall; 2 = Player; 3 = End; 4 = Boss; 5 = Chest; 6 = Trap; 7 = Key; 8 = Door; 9 = vertical wall; 
-// 10 = Left Top Corner; 11 = Right Top Corner; 12 = Left Bottom Corner; 13 = Right Bottom Corner; 14 = Left T; 15 = Right T; 
-// 16 = T; 17 = Bottom T; 18 = Cross; 19 = Vertical door; 20 = Basic enemy
+/*
+0  = Path; 
+1 = horizontal wall; 
+2 = Player; 
+3 = End; 
+4 = Boss; 
+5 = Chest; 
+6 = Trap; 
+7 = Key; 
+8 = Door; 
+9 = vertical wall; 
+10 = Left Top Corner; 
+11 = Right Top Corner; 
+12 = Left Bottom Corner; 
+13 = Right Bottom Corner; 
+14 = Left T; 
+15 = Right T; 
+16 = T;
+17 = Bottom T;
+18 = Cross;
+19 = Vertical door;
+20 = Basic enemy
+*/
 
 int maze[ROWS][COLS] =
 {
 {10, 1,16, 1, 1,1, 1, 1, 1,1,1, 1,1, 1,1, 1,16, 1,16,16,1, 1,1,1,1, 1,1, 1,1,11},
 { 9, 7, 9, 0, 0,0, 0, 0,20,0,0, 0,0, 0,0, 0, 9, 2,14,15,5, 0,0,0,0,20,0, 0,0, 9},
-{ 9, 0,12, 1, 1,1,16, 1, 1,1,1, 1,1, 1,8,10,15, 0,14,18,1, 1,1,1,1,16,8,11,0, 9},
-{ 9, 0,20, 0, 0,0, 0, 0,20,0,0, 0,0, 0,0,12,13, 0,12,13,0,10,1,8,1,15,0, 9,0, 9},
+{ 9, 0,12, 1, 1,1,16, 1, 1,1,1, 1,1, 1,8,10,15, 0,14,18,1, 1,1,8,1,16,8,11,0, 9},
+{ 9, 0,20, 0, 0,0, 0, 0,20,0,0, 0,0, 0,0,12,13, 0,12,13,1,10,1,8,1,15,0, 9,0, 9},
 { 9, 8, 1,16,16,1,18, 1,16,1,1, 1,1, 1,0, 0, 0,20, 0, 0,0, 9,0,5,0,19,0, 9,6, 9},
 { 9, 0, 0,12,13,0,17, 0,12,1,1, 1,1, 1,1, 1, 1, 8, 1, 1,1,17,1,1,1,13,0, 9,0, 9},
 {14,11, 0, 0, 0,0, 0, 0,20,0,0, 0,0, 0,0, 0, 0, 0, 0, 0,0, 0,0,0,0, 0,0, 9,0, 9},
