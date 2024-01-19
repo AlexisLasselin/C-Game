@@ -104,6 +104,7 @@ void isValidMov(int newX, int newY, int maze[ROWS][COLS]) {
         clearScreen();
         srand(time(NULL));
         randomEvent();
+        move(newX, newY, maze);
         movement();
     } else if (maze[newY][newX] == 7) {
         clearScreen();
