@@ -8,6 +8,14 @@
 #define COLS 30
 #define ROWS 10
 
+void clearScreen(void) {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
 // Purpose: Header file for map.c
 
 // The map is a 2D array of integers.

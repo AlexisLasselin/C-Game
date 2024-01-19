@@ -6,7 +6,7 @@
 #include <windows.h>
 #endif
 
-#include "map.h"  // Assuming you have a header file for map-related functions
+#include "fight.h"
 
 #define EMPTY 0
 #define PLAYER 2
@@ -16,7 +16,6 @@ int THINKING = 0;
 int playerX, playerY;  // Assuming these are global variables
 
 // Function declarations
-void clearScreen(void);
 void start(void);
 void chooseAtStart(void);
 void thinking(void);
@@ -25,13 +24,6 @@ void randomEvent(void);
 void movement(void);
 void updatePlayerPosition(int newX, int newY, int maze[][COLS]);
 
-void clearScreen(void) {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
-}
 
 void start(void) {
     clearScreen();
@@ -101,37 +93,39 @@ void updatePlayerPosition(int newX, int newY, int maze[][COLS]) {
 }
 
 void isValidMov(int newX, int newY, int maze[ROWS][COLS]) {
-    printf("%d, %d\n", newX, newY);
-    printf("%d\n", maze[newY][newX--]);
-    printf("%d\n", maze[newY][newX]);
-    printf("%d\n", maze[newY][newX++]);
     if (maze[newY][newX] == 0) {
-        // clearScreen();
+        clearScreen();
         updatePlayerPosition(newX, newY, maze);
         movement();
-    } else if (maze[newY][newX] == 20 || maze[newY][newX] == 4 ) {
-        // clearScreen();
-        // TODO: Implement fight system
+    } else if (maze[newY][newX] == 20) {
+        clearScreen();
+        fight(&goblin);
+        updatePlayerPosition(newX, newY, maze);
+        movement();
+    } else if (maze[newY][newX] == 4 ) {
+        clearScreen();
+        bossFight();
+        updatePlayerPosition(newX, newY, maze);
         movement();
     } else if (maze[newY][newX] == 8 || maze[newY][newX] == 19) {
-        // clearScreen();
+        clearScreen();
         // TODO: Implement door system
         movement();
     } else if (maze[newY][newX] == 5) {
-        // clearScreen();
+        clearScreen();
         // TODO: Implement treasure system
     } else if (maze[newY][newX] == 6) {
-        // clearScreen();
+        clearScreen();
         randomEvent();
         movement();
     } else if (maze[newY][newX] == 7) {
-        // clearScreen();
+        clearScreen();
         // TODO: Implement key system
         movement();
     } else if (maze[newY][newX] == 3) {
         // TODO: Implement win system
     } else {
-        // clearScreen();
+        clearScreen();
         printf("You can't go there.\n");
         movement();
     }
