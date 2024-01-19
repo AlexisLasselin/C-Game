@@ -5,6 +5,7 @@
 #include "adventure.h"
 
 int main(void) {
+    clearScreen();
     start();
     return EXIT_SUCCESS;
 }

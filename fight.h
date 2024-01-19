@@ -140,7 +140,11 @@ void fight(struct enemy *enemy) {
                 system("rick.bat");
             } else if (strcmp(enemy->name,"Shrek") == 0) {
                 printf("You were defeated by Shrek. Game ogre!\n");
-            }
+            } else if (strcmp(enemy->name,"Goblin") == 0) {
+                printf("You were defeated by a goblin. So bad!\n");
+            } else if (strcmp(enemy->name,"Dragon") == 0) {
+                printf("You were defeated by a dragon. You got roasted!\n");
+            } 
             gameOver();
         }
 
@@ -190,6 +194,7 @@ void bossFight(void) {
 }
 
 void attack(struct player *p, struct enemy *e) {
+    clearScreen();
     int damageDealt = calculateVariableDamage(p->damage);
     if (damageDealt > 0) {
         e->health -= damageDealt;
@@ -200,6 +205,7 @@ void attack(struct player *p, struct enemy *e) {
 }
 
 void defend(struct player *p, struct enemy *e) {
+    clearScreen();
     // Add logic for defending, e.g., increasing player's defense
     p->defense += getRandomNumber(1, 5); // Randomly increase defense by 1 to 5 points
     printf("You chose to defend. Your defense is increased.\n");
@@ -221,26 +227,74 @@ void displayLootboxResult() {
     printf("\nYou opened the chest and got:\n");
 
     // Updated loot items
-    const char* lootItems[] = {"BF Gun", "Cookie", "Crewmate Suit"};
+    const char* lootItems[] = {"BF Gun", "Cookie", "Crewmate Suit", "Clementine", "Nothing", "ALGOSUP Diploma", "Daniel's class", "A rubik's cube", "A harfang"};
 
     // Determine the randomly chosen item
-    int itemIndex = getRandomNumber(0, 2);  // 0 to 2 corresponds to BF Gun, Cookie, Crewmate Suit
+    int itemIndex = getRandomNumber(0, 7);  // 0 to 5 corresponds to BF Gun, Cookie, Crewmate Suit, Clementine, Nothing and ALGOSUP Diploma
     const char* lootItem = lootItems[itemIndex];
 
     printf(">> %s\n", lootItem);
     if (strcmp(lootItem, "BF Gun") == 0) {
-        printf("You got a BF Gun! You can now shoot your enemies!\n");
-        player.damage += 15;
+        printf("You got a BF Gun! You can now shoot your enemies! ⌐╦╦═─\n");
+        player.damage += 45;
+        printf("Your damage is now %d!\n", player.damage);
     } else if (strcmp(lootItem, "Cookie") == 0) {
         printf("You got a cookie! You can now heal yourself!\n");
         player.health += 20;
+        printf("Your health is now %d!\n", player.health);
     } else if (strcmp(lootItem, "Crewmate Suit") == 0) {
         printf("You got a crewmate suit! Watch out for impostors!\n");
         player.defense += 10;
+        printf("Your defense is now %d!\n", player.defense);
+    } else if (strcmp(lootItem, "Clementine") == 0) {
+        printf("You got a clementine! You can now summon Clementine!\n");
+        player.damage += 15;
+        player.defense += 20;
+        player.health *= 2;
+        printf("Clementine: I'm Clementine! I'm here to help!\n");
+        printf("Your damage is now %d!\n", player.damage);
+        printf("Your defense is now %d!\n", player.defense);
+        printf("Your health is now %d!\n", player.health);
+    } else if (strcmp(lootItem, "Nothing") == 0) {
+        printf("You got nothing! Better luck next time!\n");
+        printf("Emotional Damage: +10\n");
+        player.health -= 10;
+        printf("You took 10 damage!\n");
+        printf("You now have %d health.\n", player.health);
+    } else if (strcmp(lootItem, "ALGOSUP Diploma") == 0) {
+        printf("NO WAY! You got the item that no one has ever gotten before!\n");
+        printf("You got the ALGOSUP Diploma! You can now graduate!\n");
+        printf("You have unlocked the Secret Ending!\n");
+        printf("You won the game!\n");
+        printf("press any key to exit\n");
+        getchar();
+        exit(EXIT_SUCCESS);
+    } else if (strcmp(lootItem, "Daniel's class") == 0) {
+        printf("You got Daniel's class! You're really unlucky!\n");
+        gameOver();
+        exit(EXIT_SUCCESS);
+    } else if (strcmp(lootItem, "A rubik's cube") == 0) {
+        printf("You got a rubik's cube! You can now solve it!\n");
+        printf("Welcome to the God mode!\n");
+        player.damage += 100;
+        player.defense += 100;
+        player.health += 100;
+        printf("Your damage is now %d!\n", player.damage);
+        printf("Your defense is now %d!\n", player.defense);
+        printf("Your health is now %d!\n", player.health);
+    } else if (strcmp(lootItem, "A harfang") == 0) {
+        printf("You got a harfang! You can try to tame it!\n");
+        printf("You successfully tamed the harfang but\n");
+        printf("it pierced your eye\n");
+        printf("You lost 50 health\n");
+        player.health -= 50;
     }
 }
 
+
 void gameOver(void) {
+    printf("press any key to exit\n");
+    getchar();
     exit(EXIT_SUCCESS);
 }
 

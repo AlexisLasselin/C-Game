@@ -171,13 +171,13 @@ void randomEvent(void) {
     int event = getRandomNumber(1, 3);
     if (event == 1) {
         printf("You woke up a giant dragon!\n");
-        struct enemy dragon = {"Dragon", 1000, 50, 20};
+        struct enemy dragon = {"Dragon", 500, 65, 25};
         fight(&dragon);
     } else if (event == 2) {
         printf("You found a lootbox!\n");
         displayLootboxResult();
     } else if (event == 3) {
-        printf("You fall into a trap!\n");
+        printf("You fall on the ground!\n");
         player.health /= 2;
         printf("Your health is now %d\n", player.health);
     }
