@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 // Purpose: Header file for map.c
 
@@ -29,6 +32,9 @@ int maze[10][30] =
 // Display the map with ascii characters
 
 void displayMap(int map[10][30]) {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
     int i, j;
     for (i = 0; i < 10; i++) {
         for (j = 0; j < 30; j++) {
