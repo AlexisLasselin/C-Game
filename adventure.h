@@ -77,5 +77,5 @@ void thinking() {
 void lightStart(void) {
     printf("You can see now. You're in a room with a door and a map on the wall, you can see the map now.\n");
     getMap = true;
-    system("./main.bat");
+    system("main.bat");
 }
