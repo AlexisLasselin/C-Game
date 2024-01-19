@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "map.h"
+#include "adventure.h"
 
 int main(void) {
-    displayMap(maze);
+    start();
     return EXIT_SUCCESS;
 }
