@@ -153,6 +153,7 @@ void movement(void) {
         newY = playerY;
         isValidMov(newX, newY, maze);
     } else {
+        clearScreen();
         printf("Please enter a valid option.\n");
         movement();
     }
@@ -178,5 +179,6 @@ void randomEvent(void) {
     } else if (event == 3) {
         printf("You fall into a trap!\n");
         player.health /= 2;
+        printf("Your health is now %d\n", player.health);
     }
 }
